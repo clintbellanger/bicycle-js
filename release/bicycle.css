@@ -1,0 +1,17 @@
+body {
+  background-color: #cccccc;
+}
+
+canvas {
+  border: solid 1px #999999;
+  background-color: #55aa33;
+}
+
+#credits {
+  width: 640;
+  text-align: center;
+  color: #999;
+  font-family: sans-serif;
+  font-size: 8pt;
+}
+
