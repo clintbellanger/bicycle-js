@@ -14,8 +14,8 @@ function map_to_screen(map_x, map_y) {
   var calc_x = map_x - cam.x;
   var calc_y = map_y - cam.y;
 
-  var screen_x = (calc_x - calc_y) * TILE_WIDTH_HALF + CANVAS_WIDTH_HALF;
-  var screen_y = (calc_x + calc_y) * TILE_HEIGHT_HALF + CANVAS_HEIGHT_HALF;
+  var screen_x = Math.floor((calc_x - calc_y) * TILE_WIDTH_HALF + CANVAS_WIDTH_HALF);
+  var screen_y = Math.floor((calc_x + calc_y) * TILE_HEIGHT_HALF + CANVAS_HEIGHT_HALF);
 
   return {"x":screen_x, "y":screen_y};
 }
