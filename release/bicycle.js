@@ -46,7 +46,8 @@ function bicycle_init() {
 function bicycle_logic() {
 
   bicycle_move();
-  bicycle.direction = radians_to_direction(bicycle.angle);
+  
+  bicycle.direction = get_direction(bicycle.angle, 32);
   
   bicycle.animation_counter += Math.abs(bicycle.speed) * bicycle.animation_ratio;
   if (bicycle.animation_counter >= 8.0) bicycle.animation_counter = 0.0;

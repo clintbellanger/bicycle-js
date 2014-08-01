@@ -23,32 +23,27 @@ function map_to_screen(map_x, map_y) {
 /**
  * Converts angle in radians to direction on sprite sheets
  */
-function radians_to_direction(angle) {
+function get_direction(radians, directions) {
 
-  if (angle <= (-0.875 * Math.PI) || angle > (0.875 * Math.PI)) {
-   return 1;
-  }
-  else if (angle > (-0.875 * Math.PI) && angle <= (-0.625 * Math.PI)) {
-    return 2;
-  }
-  else if (angle > (-0.625 * Math.PI) && angle <= (-0.375 * Math.PI)) {
-    return 3;
-  }
-  else if (angle > (-0.375 * Math.PI) && angle <= (-0.125 * Math.PI)) {
-    return 4;
-  }  
-  else if (angle > (-0.125 * Math.PI) && angle <= (0.125 * Math.PI)) {
-    return 5;
-  }
-  else if (angle > (0.125 * Math.PI) && angle <= (0.375 * Math.PI)) {
-    return 6;
-  }
-  else if (angle > (0.375 * Math.PI) && angle <= (0.625 * Math.PI)) {
-    return 7;
-  }
-  else if (angle > (0.625 * Math.PI) && angle <= (0.875 * Math.PI)) {
-    return 0;
-  }
+   // mathematical constant tau == 2PI
+   TAU = Math.PI + Math.PI;
 
+   // convert (-PI to PI) radians to (0.0 to 2PI)
+   positive_radians = radians;
+   if (positive_radians < 0.0) positive_radians = radians + TAU;
+   
+   // convert (0.0 to 2PI) to (0.0 to 1.0)
+   normalized_direction = positive_radians / TAU;   
+
+   // the range of normalized angles that correspond to one facing direction
+   direction_range = 1.0 / directions;
+   
+   // the facing direction is exactly in the middle of this range
+   // shift it to the beginning of the range so we can map via floor
+   normalized_direction += direction_range / 2.0;
+   if (normalized_direction > 1.0) normalized_direction -= 1.0;
+   
+   // convert (0.0 to 1.0) to (0 to directions)
+   return Math.floor(normalized_direction * directions);
+   
 }
-
